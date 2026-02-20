@@ -1,0 +1,46 @@
+{
+  "description": "PossibLaw guardrails — blocks destructive commands and protects sensitive files",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/validate-bash.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/protect-files.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/format-check.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Evaluate whether Claude completed all requested tasks. Context: $ARGUMENTS. If tasks remain incomplete or errors are unresolved, block. Respond with JSON: {\"decision\": \"approve\" or \"block\", \"reason\": \"explanation\"}"
+          }
+        ]
+      }
+    ]
+  }
+}

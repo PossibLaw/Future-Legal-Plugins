@@ -22,6 +22,22 @@ Interactive plugin builder for Claude Code. Asks targeted questions to determine
 claude plugin install build-plugin --marketplace PossibLaw
 ```
 
+### guardrails
+
+General-purpose safety hooks for Claude Code. Blocks destructive commands (`rm -rf`, `sudo rm`, `curl | bash`, force-push to main), protects sensitive files (`.env`, SSH keys, credentials), auto-formats code after writes, and validates task completion before sessions end. Ships with a curated blacklist and escalation prompts for risky-but-not-fatal commands.
+
+```bash
+claude plugin install guardrails --marketplace PossibLaw
+```
+
+### legal-skills
+
+Discovery and access layer for legal professionals to easily find and use skills, tools, and MCP integrations. Provides a unified interface to legal resources from lawvable.com, docs.case.dev, and Midpage MCP. Includes commands for searching legal skills (/legal-search), browsing categorized tools (/legal-tools), and directly invoking legal workflows (/legal-skill). Features auto-discovery that suggests relevant resources during legal conversations.
+
+```bash
+claude plugin install legal-skills --marketplace PossibLaw
+```
+
 ### project-vibe
 
 Discovery-first project planning for non-coders. Guides you through defining your project goals, budget constraints, and tech stack selection — then generates a complete dev environment with docs, helper scripts, a debugging agent, and slash commands. Starts with your goals and works backward to technical decisions, so you don't need to know what a database is to get started.
@@ -52,6 +68,7 @@ Then install any plugin:
 
 ```bash
 claude plugin install build-plugin --marketplace PossibLaw
+claude plugin install guardrails --marketplace PossibLaw
 claude plugin install project-vibe --marketplace PossibLaw
 ```
 

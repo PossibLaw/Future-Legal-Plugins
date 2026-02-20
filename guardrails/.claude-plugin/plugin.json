@@ -1,0 +1,12 @@
+{
+  "name": "guardrails",
+  "version": "1.0.0",
+  "description": "Safety hooks for Claude Code — blocks destructive commands, protects sensitive files, validates task completion",
+  "author": {
+    "name": "PossibLaw"
+  },
+  "homepage": "https://github.com/PossibLaw/PossibLaw-Plugins",
+  "repository": "https://github.com/PossibLaw/PossibLaw-Plugins.git",
+  "keywords": ["safety", "hooks", "guardrails", "security"],
+  "license": "MIT"
+}

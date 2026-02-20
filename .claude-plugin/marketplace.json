@@ -10,12 +10,16 @@
       "source": "./build-plugin"
     },
     {
-      "name": "project-vibe",
-      "source": "./project-vibe"
+      "name": "guardrails",
+      "source": "./guardrails"
     },
     {
       "name": "legal-skills",
       "source": "./legal-skills"
+    },
+    {
+      "name": "project-vibe",
+      "source": "./project-vibe"
     }
   ]
 }
