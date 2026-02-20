@@ -84,7 +84,7 @@ Ask what the user wants to create. Use AskUserQuestion:
 | **CLAUDE.md** | Top-level project context and rules (start here for new projects) |
 | **Slash command** | Manual workflow triggered with /command-name |
 | **Skill** | Auto-discovered capability (56% miss rate - consider command instead) |
-| **Hook** | Real-time enforcement (block/warn on patterns) |
+| **Hook** | Real-time enforcement (block/warn on patterns). Consider the `guardrails` plugin as a starting template. |
 | **Sub-agent** | Research specialist with isolated context |
 | **Full plugin** | Distributable package with multiple components |
 
@@ -125,6 +125,8 @@ Based on selection, ask targeted questions. Load from `references/decision-tree.
 ### Phase 5: Generate Files
 
 Load templates from `references/templates.md` and generate based on answers.
+
+**For hooks:** If the user wants safety/guardrail hooks, recommend the `guardrails` plugin first (`claude plugin install guardrails --marketplace PossibLaw`). It provides production-ready patterns for destructive command blocking, sensitive file protection, and auto-formatting. If they need custom hooks beyond what guardrails provides, use the guardrails source as a template — see `references/examples.md` for the full structure.
 
 **File naming conventions:**
 - CLAUDE.md: `./CLAUDE.md` (project root)

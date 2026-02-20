@@ -39,6 +39,25 @@ After Write or Edit, auto-formats the file if a project formatter is detected (p
 ### Stop — Completion Validator
 Before session ends, evaluates whether all requested tasks were completed. Blocks if work is incomplete.
 
+## Tier 2 Hooks (Opt-In)
+
+Tier 2 hooks are defined in `hooks/tier2-hooks.json`. They are **not active by default** — users must copy or symlink the file to enable them. These hooks are non-blocking (exit 0) and provide context via `additionalContext`.
+
+### SessionStart — Git Context (`git-status.sh`)
+Runs `git status`, `git log`, and stash count at session start. Outputs branch, recent commits, and working tree changes as context.
+
+### UserPromptSubmit — Input Sanitization (`sanitize-input.py`)
+Warns if a user prompt contains likely secrets (API keys, tokens, private keys, JWTs, hardcoded passwords). Does not block — adds a warning to context so Claude avoids echoing or storing the values.
+
+### PreCompact — State Persistence (`persist-state.py`)
+Before context compression, persists session state to `.agent/COMPACT_STATE.md`. Records active plan, task list, handoff notes, and git branch so context can be restored after compaction.
+
+### SubagentStop — Output Validation (`validate-subagent.py`)
+After a subagent finishes, checks its output for incomplete markers (TODO, FIXME, WIP) and error markers (BLOCKED, FAILED). Warns if the subagent may not have fully completed its work.
+
+### TaskCompleted — Task Quality (`validate-task.py`)
+When a task is marked complete, checks for empty output, very short output, or deferral signals ("skipping for now", "out of scope"). Warns if the task may not be substantively complete.
+
 ## Rules for Claude
 
 - Do not attempt to bypass hooks or suggest workarounds for blocked commands.

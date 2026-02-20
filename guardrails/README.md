@@ -36,6 +36,32 @@ After any file write or edit, the plugin detects your project's formatter (prett
 | PostToolUse | Write\|Edit | `format-check.sh` | Auto-formats if formatter detected |
 | Stop | — | prompt (inline) | Validates task completion |
 
+## Tier 2 Hooks (Opt-In)
+
+Tier 2 hooks provide additional safety and context features. They are defined in `hooks/tier2-hooks.json` and are **not active by default**.
+
+### Enabling Tier 2
+
+To activate Tier 2 hooks, merge them into your hooks configuration or symlink the file:
+
+```bash
+# Option 1: Copy Tier 2 hooks into your project's .claude/settings.json
+# Option 2: Symlink for automatic updates
+ln -s "$(claude plugin path guardrails)/hooks/tier2-hooks.json" .claude/tier2-hooks.json
+```
+
+### Tier 2 Hook Reference
+
+| Event | Script | Behavior |
+|-------|--------|----------|
+| SessionStart | `git-status.sh` | Loads git branch, recent commits, and working tree changes |
+| UserPromptSubmit | `sanitize-input.py` | Warns if prompt contains API keys, tokens, or passwords |
+| PreCompact | `persist-state.py` | Saves session state to `.agent/COMPACT_STATE.md` |
+| SubagentStop | `validate-subagent.py` | Warns if subagent output contains TODO/FIXME/error markers |
+| TaskCompleted | `validate-task.py` | Warns if task output is empty, too short, or deferred |
+
+All Tier 2 hooks are **non-blocking** — they add warnings or context but never prevent actions.
+
 ## Customization
 
 ### Adding Blocked Commands

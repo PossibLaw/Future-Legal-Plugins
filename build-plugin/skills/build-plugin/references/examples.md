@@ -343,6 +343,67 @@ client = AIProjectClient(endpoint, api_key="hardcoded")  # Security risk
 - Different events for different purposes
 - Matcher filters which tools trigger the hook
 
+### guardrails Plugin (PossibLaw)
+
+Production-ready safety hooks plugin using Python scripts with plugin-packaged `hooks.json`.
+
+**Structure:**
+```
+guardrails/
+├── .claude-plugin/plugin.json
+├── hooks/hooks.json
+├── scripts/
+│   ├── blacklist.py         # Shared pattern lists
+│   ├── validate-bash.py     # PreToolUse: Bash
+│   ├── protect-files.py     # PreToolUse: Write|Edit
+│   └── format-check.sh      # PostToolUse: Write|Edit
+├── tests/
+├── CLAUDE.md
+└── README.md
+```
+
+**hooks.json (abridged):**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{
+          "type": "command",
+          "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/validate-bash.py\""
+        }]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [{
+          "type": "command",
+          "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/protect-files.py\""
+        }]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [{
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/format-check.sh\""
+        }]
+      }
+    ]
+  }
+}
+```
+
+**Key patterns:**
+- Three-tier response: block (exit 2), escalate (`permissionDecision: "ask"`), approve (exit 0)
+- Shared `blacklist.py` data module with `BLOCKED_PATTERNS`, `ESCALATE_PATTERNS`, and `PROTECTED_FILE_PATTERNS`
+- Stop hook with inline prompt for task-completion validation
+- `${CLAUDE_PLUGIN_ROOT}` for portable script paths
+- PostToolUse auto-formatting (detects Prettier, Ruff, Black) with `suppressOutput: true`
+
+**Install:** `claude plugin install guardrails --marketplace PossibLaw`
+
 ### Hookify Format Examples
 
 **Block Destructive Commands:**

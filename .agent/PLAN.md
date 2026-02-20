@@ -1,7 +1,7 @@
 # Implementation Plan: Guardrails Plugin
 
 **Created:** 2026-02-19
-**Status:** APPROVED — ready for implementation
+**Status:** DONE — All 13 tasks complete
 **Plugin name:** `guardrails`
 **Location:** `/Users/salvadorcarranza/Plugins/guardrails/`
 
@@ -9,7 +9,7 @@
 
 ## Phase 1: Core Infrastructure
 
-### Task 1 — Create directory structure
+### Task 1 — Create directory structure ✅
 Create the following directories and empty files:
 ```
 guardrails/
@@ -25,7 +25,7 @@ guardrails/
   README.md
 ```
 
-### Task 2 — Write plugin.json manifest
+### Task 2 — Write plugin.json manifest ✅
 File: `guardrails/.claude-plugin/plugin.json`
 
 Minimal manifest matching existing plugins (build-plugin, project-vibe, legal-skills):
@@ -50,7 +50,7 @@ No `hooks`, `scripts`, `dependencies`, or `compatibility` fields. These don't ex
 
 ## Phase 2: Validation Layer
 
-### Task 3 — Write blacklist.py
+### Task 3 — Write blacklist.py ✅
 File: `guardrails/scripts/blacklist.py`
 
 Data module (no main). Exports:
@@ -99,7 +99,7 @@ PROTECTED_FILE_PATTERNS = [
 ]
 ```
 
-### Task 4 — Write validate-bash.py
+### Task 4 — Write validate-bash.py ✅
 File: `guardrails/scripts/validate-bash.py`
 
 Executable (`#!/usr/bin/env python3`, chmod +x).
@@ -119,7 +119,7 @@ Logic:
    ```
 4. Otherwise: exit 0 (approve)
 
-### Task 5 — Write protect-files.py
+### Task 5 — Write protect-files.py ✅
 File: `guardrails/scripts/protect-files.py`
 
 Executable. Logic:
@@ -128,7 +128,7 @@ Executable. Logic:
 3. If match: exit 2 with stderr describing which file is protected and why
 4. Otherwise: exit 0
 
-### Task 6 — Write format-check.sh
+### Task 6 — Write format-check.sh ✅
 File: `guardrails/scripts/format-check.sh`
 
 Executable shell script. PostToolUse hook for Write|Edit.
@@ -143,7 +143,7 @@ Logic:
 3. Exit 0 always (PostToolUse can't block — tool already ran)
 4. Stdout JSON with `suppressOutput: true` to avoid noise
 
-### Task 7 — Write hooks.json
+### Task 7 — Write hooks.json ✅
 File: `guardrails/hooks/hooks.json`
 
 Full content specified in HANDOFF.md. Tier 1 hooks:
@@ -155,7 +155,7 @@ Full content specified in HANDOFF.md. Tier 1 hooks:
 
 ## Phase 3: Documentation
 
-### Task 8 — Write CLAUDE.md
+### Task 8 — Write CLAUDE.md ✅
 File: `guardrails/CLAUDE.md`
 
 Contents:
@@ -166,7 +166,7 @@ Contents:
 - Instruction: do not attempt to bypass hooks or suggest workarounds
 - Instruction: when a command is blocked, suggest a safer alternative
 
-### Task 9 — Write README.md
+### Task 9 — Write README.md ✅
 File: `guardrails/README.md`
 
 Contents:
@@ -183,7 +183,7 @@ Contents:
 
 ## Phase 4: Testing
 
-### Task 10 — Write test suite
+### Task 10 — Write test suite ✅
 Files: `guardrails/tests/test_validate_bash.py`, `guardrails/tests/test_protect_files.py`
 
 Test validate-bash.py:
@@ -214,39 +214,45 @@ Mock stdin with JSON payloads simulating Claude Code tool input.
 
 ## Phase 5: Integration
 
-### Task 11 — Update main README
+### Task 11 — Update main README ✅
 Add guardrails to `/Users/salvadorcarranza/Plugins/README.md` Available Plugins section.
 Place alphabetically (between build-plugin and legal-skills).
 Include description, install command.
 
-### Task 12 — Integrate with build-plugin
-Update build-plugin to reference guardrails as the hooks reference implementation.
-When users select "hooks" in the interactive flow, point to guardrails as a template.
+### Task 12 — Integrate with build-plugin ✅
+Updated build-plugin reference files to point to guardrails as the hooks reference implementation:
+- `decision-tree.md` — Added guardrails reference in Guardrail Pattern and Hook Questions sections
+- `templates.md` — Added guardrails reference in Hook Template section
+- `examples.md` — Added full guardrails plugin example (structure, hooks.json, key patterns)
+- `SKILL.md` — Added guardrails recommendation in Phase 2 and Phase 5
 
-### Task 13 — Design Tier 2 hooks (UNCONFIRMED activation mechanism)
-Define opt-in hooks using additional Claude Code events:
-- SessionStart: auto-load git status
-- SubagentStart/Stop: validate subagent behavior
-- TaskCompleted: validate task output quality
-- PreCompact: persist state before compression
-- UserPromptSubmit: sanitize input
-- Haiku escalation: type "agent" with model "haiku" for gray-area commands
+### Task 13 — Design Tier 2 hooks ✅
+Decision: Separate `tier2-hooks.json` (user opted for clean separation over env toggle).
 
-Decision needed: separate `tier2-hooks.json` vs environment variable toggle.
+Implemented 5 opt-in hooks in `hooks/tier2-hooks.json`:
+- SessionStart → `git-status.sh` — loads git branch, recent commits, working tree changes
+- UserPromptSubmit → `sanitize-input.py` — warns on API keys, tokens, private keys, JWTs
+- PreCompact → `persist-state.py` — persists session state to `.agent/COMPACT_STATE.md`
+- SubagentStop → `validate-subagent.py` — warns on TODO/FIXME/error markers in output
+- TaskCompleted → `validate-task.py` — warns on empty, short, or deferred task output
+
+All Tier 2 hooks are non-blocking (exit 0 with `additionalContext`).
+Haiku escalation (type "agent") deferred — not a standard hook type in the current API.
 
 ---
 
 ## Validation Criteria
 
 Implementation is DONE when:
-1. All scripts are executable and handle stdin JSON correctly
-2. Exit codes match documented contract (0=approve, 2=block)
-3. Escalation returns correct JSON with `permissionDecision: "ask"`
-4. hooks.json uses `${CLAUDE_PLUGIN_ROOT}` for all script paths
-5. plugin.json matches existing manifest pattern
-6. All tests pass
-7. Main README lists the plugin
-8. CLAUDE.md correctly describes all active hooks
+1. ✅ All scripts are executable and handle stdin JSON correctly
+2. ✅ Exit codes match documented contract (0=approve, 2=block)
+3. ✅ Escalation returns correct JSON with `permissionDecision: "ask"`
+4. ✅ hooks.json uses `${CLAUDE_PLUGIN_ROOT}` for all script paths
+5. ✅ plugin.json matches existing manifest pattern
+6. ✅ All 113 tests pass (66 Tier 1 + 47 Tier 2)
+7. ✅ Main README lists the plugin
+8. ✅ CLAUDE.md correctly describes all active hooks
+9. ✅ marketplace.json includes guardrails for remote installation
 
 ---
 

@@ -176,6 +176,8 @@ Ask these to generate a hook:
    - Fields: `command`, `file_path`, `new_text`, `old_text`, `user_prompt`
    - Operators: `regex_match`, `contains`, `equals`, `not_contains`, `starts_with`, `ends_with`
 
+**Tip:** For comprehensive safety hooks, consider installing the `guardrails` plugin instead of building from scratch. It includes pre-built patterns for destructive commands (12 blocked patterns), sensitive file protection (13 file patterns), escalation prompts (5 risky-but-not-fatal patterns), and auto-formatting. See `references/examples.md` for the full guardrails example.
+
 ### Sub-Agent Questions
 
 Ask these to generate an agent:
@@ -291,6 +293,8 @@ For safety-critical rules:
 1. Document in CLAUDE.md (human readable)
 2. Implement as Hook (machine enforced)
 3. Both work together - CLAUDE.md explains why, hook enforces
+
+**Reference implementation:** The `guardrails` plugin (`claude plugin install guardrails --marketplace PossibLaw`) demonstrates this pattern with production-ready hooks for destructive command blocking, sensitive file protection, and auto-formatting. Use it as a starting point or install it directly.
 
 ### The Progressive Disclosure Pattern
 

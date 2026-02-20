@@ -61,3 +61,43 @@
 ### Next Steps
 - Task 12: Integrate with build-plugin as hooks reference implementation
 - Task 13: Design Tier 2 hooks (SessionStart, SubagentStart/Stop, etc.)
+
+## 2026-02-19 — Guardrails Tasks 12–13: build-plugin integration + Tier 2 hooks
+
+### Files Created
+- `guardrails/hooks/tier2-hooks.json` — Tier 2 hook configuration (5 opt-in hooks)
+- `guardrails/scripts/git-status.sh` — SessionStart: loads git branch, commits, working tree
+- `guardrails/scripts/sanitize-input.py` — UserPromptSubmit: warns on pasted secrets/tokens
+- `guardrails/scripts/persist-state.py` — PreCompact: saves state to `.agent/COMPACT_STATE.md`
+- `guardrails/scripts/validate-subagent.py` — SubagentStop: flags incomplete/error markers
+- `guardrails/scripts/validate-task.py` — TaskCompleted: warns on empty/short/deferred output
+- `guardrails/tests/test_sanitize_input.py` — 16 test cases
+- `guardrails/tests/test_persist_state.py` — 6 test cases
+- `guardrails/tests/test_validate_subagent.py` — 14 test cases
+- `guardrails/tests/test_validate_task.py` — 11 test cases
+
+### Files Modified
+- `guardrails/CLAUDE.md` — Added Tier 2 hooks documentation section
+- `guardrails/README.md` — Added Tier 2 hooks section with reference table and enable instructions
+- `build-plugin/skills/build-plugin/references/decision-tree.md` — Added guardrails as hooks reference implementation
+- `build-plugin/skills/build-plugin/references/templates.md` — Added guardrails install reference
+- `build-plugin/skills/build-plugin/references/examples.md` — Added full guardrails plugin example
+- `build-plugin/skills/build-plugin/SKILL.md` — Added guardrails recommendation in Phase 2 and Phase 5
+- `.agent/PLAN.md` — Marked all 13 tasks complete
+- `.agent/HANDOFF.md` — Updated to reflect full completion
+
+### Key Decisions
+- **Tier 2 activation** (DECIDED): Separate `tier2-hooks.json` file. Users opt in by copying/symlinking. Tier 1 stays untouched.
+- **Haiku escalation** (DEFERRED): type "agent" with model "haiku" not a standard hook type in current API. Revisit when API supports it.
+- **All Tier 2 hooks non-blocking** (DECIDED): Exit 0 with `additionalContext` warnings only. Never prevent actions.
+
+### Key Results
+- All 113 tests pass (66 Tier 1 + 47 Tier 2)
+- All new scripts executable with correct shebangs
+- tier2-hooks.json uses `${CLAUDE_PLUGIN_ROOT}` for all script paths
+- build-plugin now references guardrails in 4 files for hooks guidance
+
+### Current State
+- Guardrails plugin fully complete: all 13 tasks done across 5 phases
+- Plan status: DONE
+- No remaining work
