@@ -1,12 +1,21 @@
 {
   "name": "legal-skills",
-  "version": "1.1.0",
-  "description": "Single-command legal skill discovery and guided application using Lawvable and Case.dev Agent Skills.",
+  "version": "1.2.0",
+  "description": "Single-command legal retrieval for skills guidance plus ContractCodex and SEC EDGAR context search.",
   "author": {
     "name": "PossibLaw"
   },
   "homepage": "https://github.com/PossibLaw/PossibLaw-Plugins",
   "repository": "https://github.com/PossibLaw/PossibLaw-Plugins.git",
-  "keywords": ["legal", "law", "skills", "discovery", "slash-command", "novice"],
+  "keywords": [
+    "legal",
+    "law",
+    "skills",
+    "contract",
+    "edgar",
+    "retrieval",
+    "slash-command",
+    "novice"
+  ],
   "license": "MIT"
 }
