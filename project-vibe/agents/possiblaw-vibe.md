@@ -1,4 +1,5 @@
 ---
+name: possiblaw-vibe
 description: Start a new project with guided discovery. Helps non-coders define goals, budget, and tech stack before coding begins.
 argument-hint: [optional project idea]
 allowed-tools: Read, Write, Edit, Glob, Bash, AskUserQuestion, Task

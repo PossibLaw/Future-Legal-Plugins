@@ -1,4 +1,5 @@
 ---
+name: possiblaw-legal
 description: Unified legal retrieval for skills guidance, ContractCodex exemplars, and SEC EDGAR exhibits
 argument-hint: [optional legal task or clause text, e.g. indemnification clause review]
 allowed-tools: Read, Glob, Grep, WebSearch, WebFetch, AskUserQuestion
