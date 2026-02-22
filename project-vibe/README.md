@@ -13,31 +13,31 @@ If you have a local plugin marketplace (a folder with `.claude-plugin/marketplac
 /plugin install project-vibe@your-marketplace-name
 ```
 
-Or use the interactive UI — run `/plugin`, go to the **Discover** tab, and install from there. Once installed, `/vibe` is available in every project.
+Or use the interactive UI — run `/plugin`, go to the **Discover** tab, and install from there. Once installed, `/possiblaw-vibe` is available in every project.
 
 **Option B: Copy the command directly**
 
 ```bash
-cp /path/to/project-vibe/commands/vibe.md ~/.claude/commands/
+cp /path/to/project-vibe/commands/possiblaw-vibe.md ~/.claude/commands/
 ```
 
-Note: Option B gives you the `/vibe` command but not the reference templates. The plugin install (Option A) includes everything.
+Note: Option B gives you the `/possiblaw-vibe` command but not the reference templates. The plugin install (Option A) includes everything.
 
 ## Usage
 
 ```bash
-/vibe
+/possiblaw-vibe
 ```
 
 Or with a starting idea:
 
 ```bash
-/vibe I want to build a todo app with AI features
+/possiblaw-vibe I want to build a todo app with AI features
 ```
 
 ## What It Does
 
-The `/vibe` command guides you through project discovery:
+The `/possiblaw-vibe` command guides you through project discovery:
 
 ### Phase 1: Vision
 - What do you want to build?
@@ -88,7 +88,7 @@ It starts with YOUR goals and works backward to technical decisions.
 
 | Component | Purpose |
 |-----------|---------|
-| `/vibe` command | Main discovery questionnaire |
+| `/possiblaw-vibe` command | Main discovery questionnaire |
 | `project-architect` agent | Tech stack advisor with cost knowledge |
 | `references/stack-options.md` | Comprehensive stack guide by budget |
 | `references/stack-templates.md` | CLAUDE.md templates for common stacks |
@@ -98,7 +98,7 @@ It starts with YOUR goals and works backward to technical decisions.
 
 ## Example Output
 
-After running `/vibe` with Standard tooling, you'll have:
+After running `/possiblaw-vibe` with Standard tooling, you'll have:
 
 ```
 your-project/

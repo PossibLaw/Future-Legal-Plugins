@@ -1,6 +1,6 @@
 # Retrieval Core (`legal-skills/retrieval`)
 
-Reference implementation for unified legal context search used by `/legal`.
+Reference implementation for unified legal context search used by `/possiblaw-legal`.
 
 ## Modules
 

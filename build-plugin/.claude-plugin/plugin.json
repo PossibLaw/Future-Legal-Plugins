@@ -1,7 +1,7 @@
 {
   "name": "build-plugin",
   "description": "Interactive plugin builder guided by the Claude Code Plugin Development Guide. Asks targeted questions to determine the right extensibility mechanism (CLAUDE.md, skills, commands, hooks, agents), then generates properly structured files.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "LumenAtlas"
   }

@@ -4,7 +4,9 @@ argument-hint: [optional project idea]
 allowed-tools: Read, Write, Edit, Glob, Bash, AskUserQuestion, Task
 ---
 
-# Project Vibe: Discovery-First Planning
+# /possiblaw-vibe
+
+Project Vibe: Discovery-First Planning
 
 Guide the user through project discovery to produce a PRD, CLAUDE.md, and reference docs.
 
@@ -344,7 +346,7 @@ File writing follows the agent's permission settings. Then:
 1. Create all directories (`docs/`, `scripts/`, `.claude/agents/`, `.claude/commands/`)
 2. Write all files
 3. Make scripts executable: `chmod +x scripts/*.sh`
-4. **Git save checkpoint:** If a `.git` repo exists, suggest committing the generated files as a starting point ("Initial project setup from /vibe"). If no `.git` exists, suggest initializing one: "Want me to set up git so you can save your progress as you go? It keeps a history of every change — recommended even for solo projects."
+4. **Git save checkpoint:** If a `.git` repo exists, suggest committing the generated files as a starting point ("Initial project setup from /possiblaw-vibe"). If no `.git` exists, suggest initializing one: "Want me to set up git so you can save your progress as you go? It keeps a history of every change — recommended even for solo projects."
 5. Provide "what's next" guidance — point them to `docs/getting-started.md` and suggest running `./scripts/setup.sh`
 
 ## Boundaries

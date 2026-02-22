@@ -1,10 +1,10 @@
 # Legal Command Agent Contract
 
-Defines the shared I/O contract for `/legal` across agents.
+Defines the shared I/O contract for `/possiblaw-legal` across agents.
 
 ## Command Surface
 
-- Primary entrypoint: `/legal [optional query]`
+- Primary entrypoint: `/possiblaw-legal [optional query]`
 - No legacy legal command surfaces.
 
 ## Input

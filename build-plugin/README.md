@@ -14,7 +14,14 @@ cp -r skills/build-plugin ~/.claude/skills/
 
 ## Usage
 
-The skill auto-activates when you mention creating plugins, skills, commands, hooks, or agents. Or invoke directly:
+Use the slash command directly:
+
+```bash
+/possiblaw-build-plugin
+/possiblaw-build-plugin create a command for contract triage
+```
+
+Or let the skill auto-activate when you mention creating plugins, skills, commands, hooks, or agents:
 
 ```
 Create a new slash command for deploying to staging
@@ -73,6 +80,7 @@ The skill includes templates and examples for all component types:
 ```bash
 # Phase 1: Test locally (project-level)
 # Skill is at .claude/skills/build-plugin/ - auto-discovered in this project
+# Command is at commands/possiblaw-build-plugin.md
 
 # Phase 2: Deploy globally (all your projects)
 cp -r .claude/skills/build-plugin ~/.claude/skills/

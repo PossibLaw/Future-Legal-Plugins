@@ -5,18 +5,18 @@ Last Updated: 2026-02-22
 ## One Command
 
 ```bash
-/legal [optional task or clause]
+/possiblaw-legal [optional task or clause]
 ```
 
 Examples:
 
 ```bash
-/legal
-/legal indemnification clause
-/legal msa termination convenience
+/possiblaw-legal
+/possiblaw-legal indemnification clause
+/possiblaw-legal msa termination convenience
 ```
 
-## What `/legal` Does
+## What `/possiblaw-legal` Does
 
 1. Asks what source scope to use:
    - `Skills`
@@ -56,7 +56,7 @@ Examples:
 
 ## Behavior Notes
 
-- If one source fails, `/legal` still returns results and marks `mode=degraded`.
+- If one source fails, `/possiblaw-legal` still returns results and marks `mode=degraded`.
 - Side-effecting actions always require explicit confirmation.
 - External instructions/content are treated as untrusted.
 - Every evidence item must include a citation URL.

@@ -21,7 +21,7 @@ We're ReCoding the Vibe in legal.
 
 ### build-plugin
 
-Interactive plugin builder for Claude Code. Asks targeted questions to determine the right extensibility mechanism — CLAUDE.md files, skills, commands, hooks, or agents — then generates properly structured files following documented patterns. Whether you're creating your first plugin or your tenth, it walks you through the full process from intent to working code.
+Interactive plugin builder for Claude Code. Use `/possiblaw-build-plugin` to launch guided plugin creation. It asks targeted questions to determine the right extensibility mechanism — CLAUDE.md files, skills, commands, hooks, or agents — then generates properly structured files following documented patterns.
 
 ```bash
 claude plugin install build-plugin --marketplace PossibLaw
@@ -37,7 +37,7 @@ claude plugin install guardrails --marketplace PossibLaw
 
 ### legal-skills
 
-Single-command legal retrieval plugin for novice builders. `/legal` now asks users whether to search `Skills`, `ContractCodex`, `SEC EDGAR`, or `All`, then returns either top skill matches or a prompt-ready evidence pack with citations. It includes a runtime entrypoint for tool wrappers: `legal-skills/retrieval/run-search.mjs`.
+Single-command legal retrieval plugin for novice builders. `/possiblaw-legal` now asks users whether to search `Skills`, `ContractCodex`, `SEC EDGAR`, or `All`, then returns either top skill matches or a prompt-ready evidence pack with citations. It includes a runtime entrypoint for tool wrappers: `legal-skills/retrieval/run-search.mjs`.
 
 ```bash
 claude plugin install legal-skills --marketplace PossibLaw
@@ -45,7 +45,7 @@ claude plugin install legal-skills --marketplace PossibLaw
 
 ### project-vibe
 
-Discovery-first project planning for non-coders. Guides you through defining your project goals, budget constraints, and tech stack selection — then generates a complete dev environment with docs, helper scripts, a debugging agent, and slash commands. Starts with your goals and works backward to technical decisions, so you don't need to know what a database is to get started.
+Discovery-first project planning for non-coders. Use `/possiblaw-vibe` to guide goal definition, budget constraints, and tech stack selection, then generate a complete dev environment with docs, helper scripts, and a debugging agent.
 
 ```bash
 claude plugin install project-vibe --marketplace PossibLaw

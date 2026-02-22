@@ -1,6 +1,6 @@
-# Codex Usage Guide for `/legal` Unified Retrieval
+# Codex Usage Guide for `/possiblaw-legal` Unified Retrieval
 
-This document mirrors the same `/legal` workflow contract used by Claude command execution.
+This document mirrors the same `/possiblaw-legal` workflow contract used by Claude command execution.
 
 ## Objective
 
@@ -8,7 +8,7 @@ Use one novice-friendly command in Codex to retrieve legal context from Skills, 
 
 ## Standard Flow
 
-1. Gather query (`/legal` argument equivalent).
+1. Gather query (`/possiblaw-legal` argument equivalent).
 2. If missing, ask user for legal task or clause text.
 3. Ask source picker:
    - `skills`

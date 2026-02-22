@@ -90,7 +90,7 @@ function parseFallbackCatalog(markdown) {
 
 export function createSecAdapter(options = {}) {
   const fetcher = options.fetcher ?? globalThis.fetch;
-  const userAgent = options.userAgent || "PossibLawLegalSkills/1.2.1 (contact: support@possiblaw.com)";
+  const userAgent = options.userAgent || "PossibLawLegalSkills/1.3.0 (contact: support@possiblaw.com)";
   const rps = options.rps ?? 5;
   const limiter = new RpsLimiter(rps);
   const fallbackPath = options.fallbackPath ?? "legal-skills/skills/legal-assistant/references/sec-exhibits-index.md";

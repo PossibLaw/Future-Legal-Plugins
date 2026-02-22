@@ -3,7 +3,7 @@
 Local fallback catalog for `https://agentskills.legal/skills`.
 
 **Source status:** active
-**Catalog type:** fallback cache for `/legal`
+**Catalog type:** fallback cache for `/possiblaw-legal`
 **Last reviewed:** 2026-02-21
 
 ## Endpoint Contract for Live Lookup
@@ -16,7 +16,7 @@ Local fallback catalog for `https://agentskills.legal/skills`.
 
 - Search responses include a `results` list with candidate skills and slugs for retrieval.
 - Detail responses for `/{slug}` include full skill content plus metadata such as legal context.
-- `/legal` should normalize API output into the plugin candidate model and degrade gracefully to markdown fallback.
+- `/possiblaw-legal` should normalize API output into the plugin candidate model and degrade gracefully to markdown fallback.
 
 ## Seed Categories
 
@@ -40,4 +40,4 @@ Local fallback catalog for `https://agentskills.legal/skills`.
 
 - Use as fallback and ranking seed, not as final truth.
 - Prefer live data before selection whenever possible.
-- Mark cache-derived results clearly in `/legal` output when live calls fail.
+- Mark cache-derived results clearly in `/possiblaw-legal` output when live calls fail.

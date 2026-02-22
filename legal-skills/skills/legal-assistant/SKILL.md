@@ -1,6 +1,6 @@
 # Legal Assistant
 
-Auto-suggests `/legal` as the unified legal retrieval command.
+Auto-suggests `/possiblaw-legal` as the unified legal retrieval command.
 
 ## Description (5%)
 
@@ -17,7 +17,7 @@ Use this skill when the user:
 
 ### Discovery
 - Detects legal-task intent from conversation context
-- Suggests `/legal <task-or-clause>` as the default entrypoint
+- Suggests `/possiblaw-legal <task-or-clause>` as the default entrypoint
 - Uses source-picker model:
   - `Skills` for how the agent should act
   - `ContractCodex` for exemplar contracts/clauses
@@ -32,8 +32,8 @@ Use this skill when the user:
 ## Usage Pattern
 
 1. Detect legal task intent.
-2. Suggest `/legal` with a concrete query.
-3. Let `/legal` ask source picker.
+2. Suggest `/possiblaw-legal` with a concrete query.
+3. Let `/possiblaw-legal` ask source picker.
 4. If `skills`, present top 5 and ask for selection.
 5. If `contractcodex`, `sec`, or `all`, return prompt-ready evidence pack.
 6. Ask user whether to refine clause type, source, or company/ticker filters.
@@ -48,7 +48,7 @@ Use this skill when the user:
 ## Boundaries
 
 **Always:**
-- Prefer `/legal` as the single legal command.
+- Prefer `/possiblaw-legal` as the single legal command.
 - Keep recommendations short and task-specific.
 - Provide source attribution for every evidence item.
 
