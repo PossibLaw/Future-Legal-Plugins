@@ -34,10 +34,11 @@
     ],
     "Stop": [
       {
+        "matcher": "*",
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Evaluate whether Claude completed all requested tasks. Context: $ARGUMENTS. If the assistant is legitimately waiting for user input/selection/clarification as the next required step, approve. If tasks remain incomplete or errors are unresolved and actionable work was expected in this turn, block. Respond with JSON: {\"decision\": \"approve\" or \"block\", \"reason\": \"explanation\"}"
+            "prompt": "You are a completion validator. Evaluate whether all requested tasks were completed. If the assistant is waiting for user input, selection, or clarification as the next step, that counts as complete. If tasks remain incomplete or errors are unresolved, block.\n\nRespond with ONLY a raw JSON object on a single line, no markdown fences, no explanation:\n{\"decision\":\"approve\",\"reason\":\"all tasks completed\"}\nor\n{\"decision\":\"block\",\"reason\":\"description of incomplete work\"}"
           }
         ]
       }
