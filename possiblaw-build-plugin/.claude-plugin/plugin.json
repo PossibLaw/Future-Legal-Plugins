@@ -1,7 +1,7 @@
 {
-  "name": "possiblaw-build-plugin",
+  "name": "possiblaw",
   "description": "Interactive plugin builder guided by the Claude Code Plugin Development Guide. Asks targeted questions to determine the right extensibility mechanism (CLAUDE.md, skills, commands, hooks, agents), then generates properly structured files.",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "author": {
     "name": "PossibLaw"
   }

@@ -4,7 +4,7 @@ argument-hint: [optional status or rule check]
 allowed-tools: Read
 ---
 
-# /possiblaw-guardrails:guardrails
+# /possiblaw:guardrails
 
 View the active safety guardrails protecting your workspace.
 

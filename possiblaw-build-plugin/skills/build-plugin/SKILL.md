@@ -1,5 +1,5 @@
 ---
-name: possiblaw-build-plugin
+name: build-plugin
 description: >
   Interactive plugin builder for Claude Code. Use when user wants to create
   a plugin, extension, skill, command, hook, agent, or CLAUDE.md file. Guides

@@ -1,11 +1,11 @@
 ---
-name: possiblaw-guardrails
+name: guardrails
 description: Manage and view active Claude Code guardrails and safety hooks.
 argument-hint: [optional status or rule check]
 allowed-tools: Read
 ---
 
-# /possiblaw-guardrails
+# /possiblaw:guardrails
 
 View the active safety guardrails protecting your workspace.
 

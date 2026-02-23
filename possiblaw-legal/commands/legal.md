@@ -4,7 +4,7 @@ argument-hint: [optional legal task or clause text]
 allowed-tools: Read, Glob, Grep, Bash, WebSearch, WebFetch, AskUserQuestion
 ---
 
-# /possiblaw-legal:legal
+# /possiblaw:legal
 
 Single entrypoint for novice-friendly legal context retrieval.
 

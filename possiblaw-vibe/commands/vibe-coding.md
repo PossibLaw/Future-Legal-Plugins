@@ -4,7 +4,7 @@ argument-hint: [optional project idea]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion, Task
 ---
 
-# /possiblaw-vibe:vibe-coding
+# /possiblaw:vibe-coding
 
 Discovery-first project planning for non-coders.
 
