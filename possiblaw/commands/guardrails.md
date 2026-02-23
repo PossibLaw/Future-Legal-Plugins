@@ -1,10 +1,10 @@
 ---
-description: Manage and view active Claude Code guardrails and safety hooks.
+description: Manage and view active Claude Code guardrails and safety hooks (PossibLaw).
 argument-hint: [optional status or rule check]
 allowed-tools: Read
 ---
 
-# /possiblaw-guardrails
+# /possiblaw:guardrails
 
 View the active safety guardrails protecting your workspace.
 
@@ -19,8 +19,4 @@ By default, the guardrails plugin monitors for:
 2. **Stop Prompts Validation:** Safely manages state when waiting for user input.
 3. **Sensitive File Edits:** Warns when credentials or critical files are modified.
 
-To see the exact rules and prompt changes applied, review your local `.claude/settings.json` or this plugin's `hooks/` config files.
-
-## Usage Notes
-
-This is a read-only command. The actual guardrails apply automatically while the plugin is installed.
+To see the exact rules and prompt changes applied, review your local `.claude/settings.json` or the guardrails plugin `hooks/` config files.

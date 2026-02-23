@@ -1,0 +1,12 @@
+{
+  "name": "possiblaw",
+  "version": "1.0.0",
+  "description": "PossibLaw umbrella plugin providing canonical /possiblaw:* command entrypoints.",
+  "author": {
+    "name": "PossibLaw"
+  },
+  "homepage": "https://github.com/PossibLaw/PossibLaw-Plugins",
+  "repository": "https://github.com/PossibLaw/PossibLaw-Plugins.git",
+  "keywords": ["possiblaw", "commands", "slash-command"],
+  "license": "MIT"
+}

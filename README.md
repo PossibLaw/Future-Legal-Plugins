@@ -19,6 +19,14 @@ We're ReCoding the Vibe in legal.
 
 ## Available Plugins
 
+### possiblaw
+
+Umbrella plugin that exposes canonical command entrypoints under a single `/possiblaw:*` namespace:
+
+```bash
+claude plugin install possiblaw --marketplace PossibLaw
+```
+
 ### possiblaw-build-plugin
 
 Interactive plugin builder for Claude Code. Use `/possiblaw-build-plugin` to launch guided plugin creation. It asks targeted questions to determine the right extensibility mechanism — CLAUDE.md files, skills, commands, hooks, or agents — then generates properly structured files following documented patterns.
@@ -76,6 +84,7 @@ claude plugin install possiblaw-build-plugin --marketplace PossibLaw
 claude plugin install possiblaw-guardrails --marketplace PossibLaw
 claude plugin install possiblaw-legal --marketplace PossibLaw
 claude plugin install possiblaw-vibe --marketplace PossibLaw
+claude plugin install possiblaw --marketplace PossibLaw
 ```
 
 ## What's Next

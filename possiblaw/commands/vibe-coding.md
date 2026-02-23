@@ -1,10 +1,10 @@
 ---
-description: Start a new project with guided discovery and produce a PRD + CLAUDE.md + reference docs.
+description: Start a new project with guided discovery and produce a PRD + CLAUDE.md + reference docs (PossibLaw).
 argument-hint: [optional project idea]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion, Task
 ---
 
-# /possiblaw-vibe
+# /possiblaw:vibe-coding
 
 Discovery-first project planning for non-coders.
 

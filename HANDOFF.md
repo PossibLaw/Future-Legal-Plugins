@@ -41,11 +41,20 @@ Status: Ready to push to `origin/main`.
 ### 5) Marketplace-only usage
 - Removed local `.claude/skills` to ensure the UI doesn’t show duplicate/non-canonical options when plugins are installed via marketplace.
 
+### 6) Single command namespace
+- Added the `possiblaw` umbrella plugin to provide canonical `/possiblaw:*` command entrypoints:
+  - `/possiblaw:build-plugin`
+  - `/possiblaw:guardrails`
+  - `/possiblaw:legal`
+  - `/possiblaw:vibe-coding`
+- Removed per-plugin `commands/` so installed plugin commands no longer appear as `/possiblaw-*:possiblaw-*`.
+
 ## Versions at Handoff
-- `possiblaw-build-plugin`: `1.2.1`
-- `possiblaw-guardrails`: `1.1.1`
-- `possiblaw-legal`: `1.4.1`
-- `possiblaw-vibe`: `1.3.1`
+- `possiblaw`: `1.0.0`
+- `possiblaw-build-plugin`: `1.2.2`
+- `possiblaw-guardrails`: `1.1.2`
+- `possiblaw-legal`: `1.4.2`
+- `possiblaw-vibe`: `1.3.2`
 
 ## Commits Pushed (latest first)
 - `5bc4e0d` fix(legal-skills): ask source first and refine stop-hook waiting behavior

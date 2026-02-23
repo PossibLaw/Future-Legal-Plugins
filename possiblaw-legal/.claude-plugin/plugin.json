@@ -1,6 +1,6 @@
 {
   "name": "possiblaw-legal",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Single-command legal retrieval for skills guidance plus ContractCodex and SEC EDGAR context search.",
   "author": {
     "name": "PossibLaw"

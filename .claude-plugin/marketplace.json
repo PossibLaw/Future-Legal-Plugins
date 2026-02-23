@@ -6,6 +6,10 @@
   },
   "plugins": [
     {
+      "name": "possiblaw",
+      "source": "./possiblaw"
+    },
+    {
       "name": "possiblaw-build-plugin",
       "source": "./possiblaw-build-plugin"
     },
