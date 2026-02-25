@@ -169,11 +169,12 @@ Run unified context retrieval flow:
 
 ## SEC Workflow
 
-When routing SEC queries, follow this three-step pattern:
+When routing SEC queries, follow this four-step pattern:
 
-1. **Search** (EFTS full-text): Run the search command with `--source sec`. Present numbered results with company, form type, date, and exhibit type. Ask user which document to examine.
-2. **Extract provision**: For a user-selected document, run fetch-extract mode with `--mode fetch-extract --url "<url>" --extract "<keyword>"`. Present the extracted section text.
-3. **Fetch full document**: Only if user explicitly asks for full text, run `--mode fetch --url "<url>"`.
+1. **Search with previews**: Run `--mode search-preview --query "<query>"`. This returns results with ~400-char provision previews for the top 3 documents. Present as a numbered table with columns: #, Company, Filing, Date, Exhibit, Provision Preview, URL.
+2. **Load more previews**: If more than 3 results exist, ask the user if they want previews for the next 3. For each, run `--mode fetch-extract --url "<url>" --extract "<keyword>"` and append the preview. Repeat until user declines or all results are previewed.
+3. **Extract full provision**: For a user-selected document, run `--mode fetch-extract --url "<url>" --extract "<keyword>"`. Present the full extracted section text.
+4. **Fetch full document**: Only if user explicitly asks for full text, run `--mode fetch --url "<url>"`.
 
 Always end SEC results with: "This is a factual excerpt from a publicly filed SEC exhibit. This is not legal advice."
 

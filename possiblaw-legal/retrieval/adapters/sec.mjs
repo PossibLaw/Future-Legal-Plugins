@@ -276,9 +276,16 @@ export function createSecAdapter(options = {}) {
     return records;
   }
 
+  async function fetchDocumentText(url, controls = {}) {
+    const response = await secFetch(url, controls);
+    const body = await response.text();
+    return stripHtml(body);
+  }
+
   return {
     source: "sec",
     secFetch,
+    fetchDocumentText,
     async search(query, controls = {}) {
       const notes = [];
       const fallback = await loadFallback(query);

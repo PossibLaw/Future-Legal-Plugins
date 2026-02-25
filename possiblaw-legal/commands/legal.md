@@ -28,17 +28,23 @@ Single entrypoint for novice-friendly legal context retrieval.
 
 When source is SEC:
 
-1. **Search**: Run EFTS full-text search:
-   `bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-search.sh" --query "<query>" --source sec --json --pretty`
-   Present results as numbered list: company, form type, date, exhibit type, URL.
-   Ask user which document(s) to examine.
+1. **Search with previews**: Run search-preview to get results with provision snippets:
+   `bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-search.sh" --mode search-preview --query "<query>" --json --pretty`
+   Present results as a numbered table with columns: #, Company, Filing, Date, Exhibit, Provision Preview, URL.
+   The top 3 results include a ~400-char provision preview extracted from the document.
 
-2. **Extract provision**: For each document the user picks:
+2. **Load more previews**: If there are more than 3 results, ask:
+   "Would you like me to load previews for the next 3 results?"
+   If yes, for each of the next 3 URLs run:
    `bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-search.sh" --mode fetch-extract --url "<url>" --extract "<keyword>" --json --pretty`
-   Present the extracted section text.
-   If user didn't specify a keyword, ask what provision they want (e.g., "indemnification", "limitation of liability", "change of control").
+   The keyword is auto-derived from the query (e.g., "indemnification" from "indemnification clauses AI").
+   Append the preview text to the table and ask again if more remain.
 
-3. **Fetch full document** (only if user explicitly requests full text):
+3. **Extract full provision**: When the user picks a document to examine in full:
+   `bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-search.sh" --mode fetch-extract --url "<url>" --extract "<keyword>" --json --pretty`
+   Present the full extracted section text.
+
+4. **Fetch full document** (only if user explicitly requests full text):
    `bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-search.sh" --mode fetch --url "<url>" --json --pretty`
 
 Always end with: "This is a factual excerpt from a publicly filed SEC exhibit. This is not legal advice."

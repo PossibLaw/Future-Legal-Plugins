@@ -5,9 +5,10 @@ import { normalizeBySource } from "./normalize.mjs";
 import { stripHtml } from "./html.mjs";
 import { fetchWithRetry, RpsLimiter } from "./resilience.mjs";
 import { loadConfig } from "./config.mjs";
+import { createSecAdapter } from "./adapters/sec.mjs";
 
 const VALID_FORMATS = new Set(["json", "markdown"]);
-const VALID_MODES = new Set(["search", "fetch", "fetch-extract"]);
+const VALID_MODES = new Set(["search", "search-preview", "fetch", "fetch-extract"]);
 
 function parseInteger(value, fallback) {
   if (value === undefined || value === null || value === "") {
@@ -42,6 +43,7 @@ function usageText() {
     "",
     "Modes:",
     "  search (default)    Search across sources and return ranked evidence",
+    "  search-preview      Search SEC and fetch provision previews for top results",
     "  fetch               Fetch a single SEC EDGAR document by URL",
     "  fetch-extract       Fetch a document and extract sections matching a keyword",
     "",
@@ -50,8 +52,14 @@ function usageText() {
     "  --source <scope>          skills | contractcodex | sec | all (default: all)",
     "  --max-evidence <n>        Max evidence rows (default: 8, hard max: 12)",
     "",
+    "Search-preview options:",
+    "  --mode search-preview     Search SEC and auto-fetch provision previews",
+    "  --query <text>            Required legal task or clause text",
+    "  --preview-batch <n>       How many results to preview-fetch (default: 3)",
+    "  --preview-chars <n>       Max chars for each preview snippet (default: 400)",
+    "",
     "Fetch / fetch-extract options:",
-    "  --mode <mode>             search | fetch | fetch-extract (default: search)",
+    "  --mode <mode>             search | search-preview | fetch | fetch-extract",
     "  --url <edgar-url>         SEC EDGAR document URL (required for fetch modes)",
     "  --extract <keyword>       Keyword to extract sections for (required for fetch-extract)",
     "  --context-chars <n>       Characters of context around keyword (default: 3000)",
@@ -66,6 +74,9 @@ function usageText() {
     "Examples:",
     "  # Search SEC for indemnification clauses",
     "  node retrieval/run-search.mjs --query \"indemnification\" --source sec --json --pretty",
+    "",
+    "  # Search with provision previews",
+    "  node retrieval/run-search.mjs --mode search-preview --query \"indemnification AI\" --json --pretty",
     "",
     "  # Fetch full document text",
     "  node retrieval/run-search.mjs --mode fetch --url \"https://www.sec.gov/Archives/...\" --json --pretty",
@@ -90,6 +101,8 @@ export function parseRuntimeArgs(argv = process.argv.slice(2)) {
     url: undefined,
     extract: undefined,
     contextChars: 3000,
+    previewBatch: 3,
+    previewChars: 400,
     help: false,
   };
 
@@ -147,6 +160,14 @@ export function parseRuntimeArgs(argv = process.argv.slice(2)) {
         options.contextChars = argv[i + 1];
         i += 1;
         break;
+      case "--preview-batch":
+        options.previewBatch = argv[i + 1];
+        i += 1;
+        break;
+      case "--preview-chars":
+        options.previewChars = argv[i + 1];
+        i += 1;
+        break;
       default:
         throw new Error(`Unknown argument: ${arg}`);
     }
@@ -163,6 +184,8 @@ export function parseRuntimeArgs(argv = process.argv.slice(2)) {
   }
 
   options.contextChars = parseInteger(options.contextChars, 3000);
+  options.previewBatch = parseInteger(options.previewBatch, 3);
+  options.previewChars = parseInteger(options.previewChars, 400);
   options.format = String(options.format || "markdown").toLowerCase();
   if (!VALID_FORMATS.has(options.format)) {
     throw new Error(`Unsupported format: ${options.format}`);
@@ -183,9 +206,11 @@ function coalesceRuntimeInput(cli, payload = {}) {
     url: cli.url ?? payload.url,
     extract: cli.extract ?? payload.extract,
     contextChars: parseInteger(cli.contextChars ?? payload.contextChars, 3000),
+    previewBatch: parseInteger(cli.previewBatch ?? payload.previewBatch, 3),
+    previewChars: parseInteger(cli.previewChars ?? payload.previewChars, 400),
   };
 
-  if (resolved.mode === "search") {
+  if (resolved.mode === "search" || resolved.mode === "search-preview") {
     if (!resolved.query || !String(resolved.query).trim()) {
       throw new Error("Missing required query. Pass --query or provide JSON on stdin with {\"query\": ... }.");
     }
@@ -420,6 +445,124 @@ async function runFetchExtractMode(resolved) {
   };
 }
 
+const LEGAL_STOPWORDS = new Set([
+  "clause", "clauses", "provision", "provisions", "professional", "services",
+  "agreement", "agreements", "contract", "contracts", "section", "sections",
+  "article", "articles", "terms", "conditions", "obligations", "rights",
+  "the", "a", "an", "in", "of", "for", "and", "or", "with", "to", "from",
+]);
+
+export function deriveKeyword(query) {
+  const words = String(query || "")
+    .toLowerCase()
+    .split(/\W+/)
+    .filter(Boolean)
+    .filter((w) => !LEGAL_STOPWORDS.has(w));
+
+  return words[0] || String(query || "").trim().split(/\s+/)[0] || "";
+}
+
+async function runSearchPreviewMode(resolved) {
+  const config = loadConfig();
+  const adapter = createSecAdapter({
+    userAgent: config.secUserAgent,
+    rps: config.secRps,
+  });
+
+  const searchResult = await adapter.search(resolved.query, {
+    retries: config.fetchRetries,
+    timeoutMs: config.fetchTimeoutMs,
+  });
+
+  const keyword = deriveKeyword(resolved.query);
+  const records = searchResult.records;
+  const previewBatch = resolved.previewBatch;
+  const previewChars = resolved.previewChars;
+
+  const enriched = [];
+  for (let i = 0; i < records.length; i += 1) {
+    const record = records[i];
+    let preview = null;
+    let previewKeyword = keyword;
+
+    if (i < previewBatch && keyword) {
+      try {
+        const text = await adapter.fetchDocumentText(record.url, {
+          timeoutMs: config.fetchTimeoutMs,
+        });
+        const extracted = extractSections(text, keyword, previewChars);
+        if (extracted.found && extracted.sections.length > 0) {
+          const section = extracted.sections[0].text;
+          preview = section.length > previewChars
+            ? section.slice(0, previewChars) + "..."
+            : section;
+        }
+      } catch {
+        // Preview fetch failed — leave preview null
+      }
+    }
+
+    enriched.push({
+      rank: i + 1,
+      source: record.source,
+      title: record.title,
+      snippet: record.snippet,
+      url: record.url,
+      preview,
+      previewKeyword,
+      metadata: record.metadata,
+    });
+  }
+
+  const result = {
+    query: resolved.query,
+    keyword,
+    previewBatch,
+    totalResults: records.length,
+    results: enriched,
+    degradedNotes: searchResult.degradedNotes || [],
+  };
+
+  if (resolved.format === "json") {
+    return {
+      exitCode: 0,
+      output: JSON.stringify(result, null, resolved.pretty ? 2 : 0),
+      format: "json",
+      data: result,
+    };
+  }
+
+  const lines = [
+    `SEC EDGAR results for "${resolved.query}" (keyword: "${keyword}")`,
+    `Showing previews for top ${Math.min(previewBatch, records.length)} of ${records.length} results.`,
+    "",
+  ];
+
+  for (const item of enriched) {
+    const meta = item.metadata || {};
+    lines.push(`${item.rank}. ${meta.company || item.title}`);
+    lines.push(`   Filing: ${meta.formType || "N/A"} | Date: ${meta.filingDate || "N/A"} | Exhibit: ${meta.exhibitType || "N/A"}`);
+    lines.push(`   URL: ${item.url}`);
+    if (item.preview) {
+      lines.push(`   Preview: ${item.preview}`);
+    } else if (item.rank <= previewBatch) {
+      lines.push(`   Preview: No matching "${keyword}" section found in document.`);
+    } else {
+      lines.push(`   Preview: Not yet loaded. Ask to load more previews.`);
+    }
+    lines.push("");
+  }
+
+  lines.push("This is a factual excerpt from a publicly filed SEC exhibit. This is not legal advice.");
+
+  return {
+    exitCode: 0,
+    output: lines.join("\n"),
+    format: "markdown",
+    data: result,
+  };
+}
+
 export async function runRuntime(argv = process.argv.slice(2), stdinText) {
   const cli = parseRuntimeArgs(argv);
   if (cli.help) {
@@ -449,6 +592,10 @@ export async function runRuntime(argv = process.argv.slice(2), stdinText) {
 
   if (resolved.mode === "fetch-extract") {
     return runFetchExtractMode(resolved);
+  }
+
+  if (resolved.mode === "search-preview") {
+    return runSearchPreviewMode(resolved);
   }
 
   // Default: search mode
@@ -481,4 +628,4 @@ export async function runRuntime(argv = process.argv.slice(2), stdinText) {
   };
 }
 
-export { usageText };
+export { usageText, LEGAL_STOPWORDS };

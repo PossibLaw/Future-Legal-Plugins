@@ -37,10 +37,13 @@ Use this skill when the user:
 - Encourages prompt-ready evidence packs with citations
 - Keeps user in explicit confirmation flow before any side effects
 
-### SEC Document Fetch & Extract
+### SEC Document Search, Preview & Extract
 - SEC source supports topic-based full-text search via EFTS
-- After search, users can fetch full documents or extract specific provisions by keyword
-- Supports `fetch` (full document text) and `fetch-extract` (keyword-targeted section extraction) modes
+- `search-preview` mode returns results with ~400-char provision previews for the top 3 documents, auto-deriving the extraction keyword from the query
+- Users see provision text before deciding which documents to examine in full
+- Supports paginated "load more" to preview additional results in batches of 3
+- `fetch-extract` extracts the full provision section by keyword
+- `fetch` retrieves full document text
 
 ## Usage Pattern
 
