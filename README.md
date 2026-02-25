@@ -21,7 +21,7 @@ We're ReCoding the Vibe in legal.
 
 ### possiblaw-build-plugin
 
-Interactive plugin builder for Claude Code. Use `/possiblaw-build-plugin` to launch guided plugin creation. It asks targeted questions to determine the right extensibility mechanism — CLAUDE.md files, skills, commands, hooks, or agents — then generates properly structured files following documented patterns.
+Interactive plugin builder for Claude Code. Use `/possiblaw-build-plugin:build-plugin` to launch guided plugin creation. It asks targeted questions to determine the right extensibility mechanism — CLAUDE.md files, skills, commands, hooks, or agents — then generates properly structured files following documented patterns.
 
 ```bash
 claude plugin install possiblaw-build-plugin@possiblaw-plugins
@@ -37,7 +37,7 @@ claude plugin install possiblaw-guardrails@possiblaw-plugins
 
 ### possiblaw-legal
 
-Single-command legal retrieval plugin for novice builders. `/possiblaw-legal` now asks users whether to search `Skills`, `ContractCodex`, `SEC EDGAR`, or `All`, then returns either top skill matches or a prompt-ready evidence pack with citations. It includes a runtime entrypoint for tool wrappers: `possiblaw-legal/retrieval/run-search.mjs`.
+Single-command legal retrieval plugin for novice builders. `/possiblaw-legal:legal` now asks users whether to search `Skills`, `ContractCodex`, `SEC EDGAR`, or `All`, then returns either top skill matches or a prompt-ready evidence pack with citations. It includes a runtime entrypoint for tool wrappers: `possiblaw-legal/retrieval/run-search.mjs`.
 
 ```bash
 claude plugin install possiblaw-legal@possiblaw-plugins
@@ -45,7 +45,7 @@ claude plugin install possiblaw-legal@possiblaw-plugins
 
 ### possiblaw-vibe
 
-Discovery-first project planning for non-coders. Use `/possiblaw-vibe` to guide goal definition, budget constraints, and tech stack selection, then generate a complete dev environment with docs, helper scripts, and a debugging agent.
+Discovery-first project planning for non-coders. Use `/possiblaw-vibe:vibe-coding` to guide goal definition, budget constraints, and tech stack selection, then generate a complete dev environment with docs, helper scripts, and a debugging agent.
 
 ```bash
 claude plugin install possiblaw-vibe@possiblaw-plugins
@@ -84,6 +84,19 @@ claude plugin install possiblaw-guardrails@possiblaw-plugins
 claude plugin install possiblaw-legal@possiblaw-plugins
 claude plugin install possiblaw-vibe@possiblaw-plugins
 ```
+
+## Release Validation
+
+Before publishing plugin changes, run:
+
+```bash
+./scripts/validate-marketplace.sh
+```
+
+This enforces:
+- Unique `plugin.json` names across all marketplace plugins
+- `plugin.json` `name` matches each marketplace plugin ID
+- Non-empty plugin versions
 
 ## What's Next
 

@@ -1,7 +1,7 @@
 {
-  "name": "possiblaw",
+  "name": "possiblaw-vibe",
   "description": "Discovery-first project planning for non-coders. Guides through goal definition, budget constraints, and tech stack selection — then generates a complete dev environment with docs, helper scripts, a debugging agent, and slash commands.",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": {
     "name": "PossibLaw"
   }

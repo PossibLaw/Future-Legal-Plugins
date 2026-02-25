@@ -1,6 +1,6 @@
 {
-  "name": "possiblaw",
-  "version": "1.2.1",
+  "name": "possiblaw-guardrails",
+  "version": "1.2.2",
   "description": "Safety hooks for Claude Code — blocks destructive commands, protects sensitive files, validates task completion",
   "author": {
     "name": "PossibLaw"

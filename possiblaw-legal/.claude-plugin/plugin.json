@@ -1,6 +1,6 @@
 {
-  "name": "possiblaw",
-  "version": "1.5.0",
+  "name": "possiblaw-legal",
+  "version": "1.5.1",
   "description": "Unified legal retrieval across Skills, ContractCodex, and SEC EDGAR exhibits (with offline fallback catalogs).",
   "author": {
     "name": "PossibLaw"
@@ -10,4 +10,3 @@
   "keywords": ["legal", "contracts", "sec", "edgar", "clauses", "retrieval"],
   "license": "MIT"
 }
-

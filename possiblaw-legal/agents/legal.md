@@ -5,16 +5,16 @@ argument-hint: [optional legal task or clause text, e.g. indemnification clause 
 allowed-tools: Read, Glob, Grep, WebSearch, WebFetch, AskUserQuestion
 ---
 
-# /possiblaw:legal
+# /possiblaw-legal:legal
 
 Single entrypoint for novice-friendly legal context retrieval and skill application.
 
 ## Usage
 
 ```bash
-/possiblaw:legal
-/possiblaw:legal indemnification clause
-/possiblaw:legal vendor agreement termination rights
+/possiblaw-legal:legal
+/possiblaw-legal:legal indemnification clause
+/possiblaw-legal:legal vendor agreement termination rights
 ```
 
 ## Goal

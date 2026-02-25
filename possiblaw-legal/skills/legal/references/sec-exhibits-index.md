@@ -3,7 +3,7 @@
 Local fallback catalog for SEC EDGAR contract exhibit retrieval.
 
 **Source status:** active
-**Catalog type:** fallback cache for `/possiblaw:legal`
+**Catalog type:** fallback cache for `/possiblaw-legal:legal`
 **Last reviewed:** 2026-02-22
 
 ## Featured Entries

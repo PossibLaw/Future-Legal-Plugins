@@ -4,7 +4,7 @@ argument-hint: [optional what you want to build]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
 ---
 
-# /possiblaw:build-plugin
+# /possiblaw-build-plugin:build-plugin
 
 Questionnaire-driven plugin builder.
 

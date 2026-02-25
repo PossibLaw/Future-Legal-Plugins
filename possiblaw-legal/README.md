@@ -4,7 +4,7 @@ Single-command legal retrieval for novice builders.
 
 ## Overview
 
-`/possiblaw:legal` is the only command in this plugin. It asks users what source they want to search, then returns either:
+`/possiblaw-legal:legal` is the only command in this plugin. It asks users what source they want to search, then returns either:
 - Top legal skills to direct agent behavior, or
 - A prompt-ready evidence pack from contract exemplars.
 
@@ -19,14 +19,14 @@ Single-command legal retrieval for novice builders.
 
 ## Command
 
-### `/possiblaw:legal [optional query]`
+### `/possiblaw-legal:legal [optional query]`
 
 Examples:
 
 ```bash
-/possiblaw:legal
-/possiblaw:legal indemnification clause
-/possiblaw:legal software license termination rights
+/possiblaw-legal:legal
+/possiblaw-legal:legal indemnification clause
+/possiblaw-legal:legal software license termination rights
 ```
 
 ## Install (Claude Code)
@@ -149,7 +149,7 @@ This repository package is a Claude plugin format. Codex does not install it thr
 To use the same workflow in Codex:
 
 1. Start a Codex session in your workspace.
-2. Prompt Codex to follow the `/possiblaw:legal` unified retrieval contract in this plugin.
+2. Prompt Codex to follow the `/possiblaw-legal:legal` unified retrieval contract in this plugin.
 3. Use `docs/codex-usage.md` as the runtime checklist.
 
 ## Version

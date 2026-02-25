@@ -1,6 +1,6 @@
 # Retrieval Core (`retrieval/`)
 
-Reference implementation for unified legal context search used by `/possiblaw:legal`.
+Reference implementation for unified legal context search used by `/possiblaw-legal:legal`.
 
 ## Modules
 

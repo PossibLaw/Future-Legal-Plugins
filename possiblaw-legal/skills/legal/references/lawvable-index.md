@@ -3,7 +3,7 @@
 Local fallback catalog for `https://www.lawvable.com/en`.
 
 **Source status:** active
-**Catalog type:** fallback cache for `/possiblaw:legal`
+**Catalog type:** fallback cache for `/possiblaw-legal:legal`
 **Last reviewed:** 2026-02-21
 
 ## Featured Entries
@@ -35,5 +35,5 @@ Local fallback catalog for `https://www.lawvable.com/en`.
 
 ## Maintenance
 
-- Refresh when `/possiblaw:legal` discovers missing or changed skills.
+- Refresh when `/possiblaw-legal:legal` discovers missing or changed skills.
 - Keep summaries short and task-oriented for novice readability.

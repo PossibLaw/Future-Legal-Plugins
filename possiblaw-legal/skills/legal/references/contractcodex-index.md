@@ -3,7 +3,7 @@
 Local fallback catalog for `https://www.contractcodex.com`.
 
 **Source status:** active
-**Catalog type:** fallback cache for `/possiblaw:legal`
+**Catalog type:** fallback cache for `/possiblaw-legal:legal`
 **Last reviewed:** 2026-02-22
 
 ## Featured Entries

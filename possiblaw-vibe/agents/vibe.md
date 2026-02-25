@@ -5,7 +5,7 @@ argument-hint: [optional project idea]
 allowed-tools: Read, Write, Edit, Glob, Bash, AskUserQuestion, Task
 ---
 
-# /possiblaw:vibe
+# /possiblaw-vibe:vibe
 
 Project Vibe: Discovery-First Planning
 

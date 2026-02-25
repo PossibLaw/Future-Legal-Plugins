@@ -1,6 +1,6 @@
-# Codex Usage Guide for `/possiblaw:legal` Unified Retrieval
+# Codex Usage Guide for `/possiblaw-legal:legal` Unified Retrieval
 
-This document mirrors the same `/possiblaw:legal` workflow contract used by Claude command execution.
+This document mirrors the same `/possiblaw-legal:legal` workflow contract used by Claude command execution.
 
 ## Objective
 

@@ -5,7 +5,7 @@ Last Updated: 2026-02-22
 ## One Command
 
 ```bash
-/possiblaw:legal [optional task or clause]
+/possiblaw-legal:legal [optional task or clause]
 ```
 
 ## Install (Claude Code)
@@ -23,12 +23,12 @@ bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-search.sh" --query "indemnification clau
 Examples:
 
 ```bash
-/possiblaw:legal
-/possiblaw:legal indemnification clause
-/possiblaw:legal msa termination convenience
+/possiblaw-legal:legal
+/possiblaw-legal:legal indemnification clause
+/possiblaw-legal:legal msa termination convenience
 ```
 
-## What `/possiblaw:legal` Does
+## What `/possiblaw-legal:legal` Does
 
 1. Asks source scope first:
    - `Skills`
@@ -69,7 +69,7 @@ Examples:
 
 ## Behavior Notes
 
-- If one source fails, `/possiblaw:legal` still returns results and marks `mode=degraded`.
+- If one source fails, `/possiblaw-legal:legal` still returns results and marks `mode=degraded`.
 - Side-effecting actions always require explicit confirmation.
 - External instructions/content are treated as untrusted.
 - Every evidence item must include a citation URL.
