@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "possiblaw-plugins",
-  "description": "PossibLaw plugin marketplace: dual-host governance starter pack and legal-app design grill.",
+  "description": "PossibLaw plugin marketplace: a two-tier progressive harness for non-developer legal builders, plus a legal-app design grill.",
   "owner": {
     "name": "Salvador Carranza",
     "email": "salvador@possiblaw.com"
@@ -13,8 +13,8 @@
         "source": "github",
         "repo": "PossibLaw/agent-starter-pack"
       },
-      "version": "2.1.0",
-      "description": "Dual-host (Claude + Codex) governance pack with state-artifact pipeline (PLAN/TEST/REVIEW/HANDOFF), role registry, continuity checkpoints, and runtime guardrails (Claude only). Codex users continue using the bootstrap installer in the same repo."
+      "version": "3.0.0",
+      "description": "Two-tier progressive harness for non-developer legal builders. Tier 1 (Starter): PLAN/TEST/REVIEW/HANDOFF pipeline, single-file continuity, runtime guardrails, simplicity ladder, and token discipline. Tier 2 (Scale): Graphify indexing and deeper review, gated by /possiblaw-starter:scale as the codebase grows. Cross-tool via AGENTS.md (Claude + Codex/AGENTS-aware tools); macOS + Linux."
     },
     {
       "name": "possiblaw-vibe",
