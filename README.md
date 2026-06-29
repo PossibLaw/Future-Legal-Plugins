@@ -1,6 +1,6 @@
 # PossibLaw Plugins
 
-PossibLaw plugin marketplace for Claude Code. Distributes our dual-host starter pack and the legal-app design grill plugin.
+PossibLaw plugin marketplace for Claude Code. Distributes our cross-tool starter pack (a two-tier progressive harness) and the legal-app design grill plugin.
 
 ## Runtime Support
 
@@ -25,9 +25,9 @@ We're ReCoding the Vibe in legal.
 
 ## Plugins
 
-### possiblaw-starter (v2.1.0)
+### possiblaw-starter (v3.0.0)
 
-Dual-host (Claude + Codex) governance pack with state-artifact pipeline (PLAN/TEST/REVIEW/HANDOFF), role registry, continuity checkpoints, and runtime guardrails (Claude only). Sourced from [`PossibLaw/agent-starter-pack`](https://github.com/PossibLaw/agent-starter-pack). Codex users continue using the bootstrap installer in that repo.
+Two-tier progressive harness for non-developer legal builders. **Tier 1 (Starter)** ships the state-artifact pipeline (PLAN/TEST/REVIEW/HANDOFF), single-file continuity, role registry, continuity checkpoints, runtime guardrails (Claude only), a simplicity ladder, and token discipline. **Tier 2 (Scale)** adds Graphify indexing and deeper review, gated by `/possiblaw-starter:scale` as the codebase grows. Sourced from [`PossibLaw/agent-starter-pack`](https://github.com/PossibLaw/agent-starter-pack). Cross-tool via `AGENTS.md`; Codex/AGENTS-aware users continue using the bootstrap installer in that repo (macOS + Linux).
 
 Installing the plugin gives you the **global** layer (guardrails, agents, skills active in every Claude Code session). To scaffold the **per-project** layer (`AGENTS.md`, `CLAUDE.md`, `.agent/*.md` state templates, `docs/roles/`, `docs/workflows/`, `docs/glossary.md`), run the init command inside any project repo after install:
 
