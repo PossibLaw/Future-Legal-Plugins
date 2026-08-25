@@ -10,8 +10,8 @@
     {
       "name": "possibnow-dev-harness",
       "source": {
-        "source": "github",
-        "repo": "PossibLaw/possibnow-dev-harness"
+        "source": "git",
+        "url": "https://github.com/PossibLaw/possibnow-dev-harness.git"
       },
       "version": "4.0.0",
       "description": "PossibNow Dev Harness: two-tier progressive governance harness (Claude + Codex). Tier 1 (Starter): PLAN/TEST/REVIEW/HANDOFF pipeline, one shared .agent/HANDOFF.md that every commit must carry (Claude Code guardrail), runtime guardrails, simplicity ladder, and token discipline. Tier 2 (Scale): Graphify indexing queried instead of re-reading source, gated by /possibnow-dev-harness:scale as the codebase grows. Cross-tool via AGENTS.md; macOS + Linux."
