@@ -1,20 +1,20 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "possiblaw-plugins",
-  "description": "PossibLaw plugin marketplace: a two-tier progressive harness for non-developer legal builders, plus a legal-app design grill.",
+  "description": "PossibLaw plugin marketplace: the PossibNow Dev Harness (a two-tier progressive governance harness for non-developer builders, Claude + Codex), plus a legal-app design grill.",
   "owner": {
     "name": "Salvador Carranza",
     "email": "salvador@possiblaw.com"
   },
   "plugins": [
     {
-      "name": "possiblaw-starter",
+      "name": "possibnow-dev-harness",
       "source": {
         "source": "github",
-        "repo": "PossibLaw/agent-starter-pack"
+        "repo": "PossibLaw/possibnow-dev-harness"
       },
-      "version": "3.0.0",
-      "description": "Two-tier progressive harness for non-developer legal builders. Tier 1 (Starter): PLAN/TEST/REVIEW/HANDOFF pipeline, single-file continuity, runtime guardrails, simplicity ladder, and token discipline. Tier 2 (Scale): Graphify indexing and deeper review, gated by /possiblaw-starter:scale as the codebase grows. Cross-tool via AGENTS.md (Claude + Codex/AGENTS-aware tools); macOS + Linux."
+      "version": "4.0.0",
+      "description": "PossibNow Dev Harness: two-tier progressive governance harness (Claude + Codex). Tier 1 (Starter): PLAN/TEST/REVIEW/HANDOFF pipeline, one shared .agent/HANDOFF.md that every commit must carry (Claude Code guardrail), runtime guardrails, simplicity ladder, and token discipline. Tier 2 (Scale): Graphify indexing queried instead of re-reading source, gated by /possibnow-dev-harness:scale as the codebase grows. Cross-tool via AGENTS.md; macOS + Linux."
     },
     {
       "name": "possiblaw-vibe",
